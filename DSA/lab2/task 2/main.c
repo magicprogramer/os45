@@ -5,12 +5,14 @@ struct Student
     int id;
     char name[10];
     int grade;
-    int first;
-    int last;
 };
-//last place in array of students will hold the location of
-//first student and last which is the location where i can add a new student
-struct Student arr[1001];
+struct Node
+{
+    struct Student student;
+    struct Node * next;
+};
+struct Node *head;
+struct Node *tail;
 struct Student fill()
 {
     int id;
@@ -35,51 +37,61 @@ void print(struct Student st)
     printf("Student grade : %d\n", st.grade);
     printf("-----------------------------------------------\n");
 }
-int enqueue(struct Student st)
+struct Node * CreateNode(struct Student st)
 {
-    int last = arr[1000].last, first = arr[1000].first, ret = 0;
-    if (last < 1000)
+    struct Node *ptr;
+    ptr = (struct Node *)malloc(sizeof(struct Node ));
+    if (ptr)
+    {
+        ptr->student = st;
+        ptr->next = NULL;
+    }
+    return ptr;
+};
+int push(struct Student st)
+{
+    int ret = 0;
+    struct Node * node = CreateNode(st);
+    if (node)
     {
         ret = 1;
-        arr[last] = st;
-        last ++;
+        if (head)
+        {
+            node->next = head;
+            head = node;
+        }
+        else
+        {
+            head = node;
+        }
     }
-    arr[1000].last = last;
     return ret;
 }
-struct Student dequeue()
+struct Student pop()
 {
-    int last = arr[1000].last, first = arr[1000].first, ret = 0;
+    int ret = 0;
     struct Student st;
     st.id = -1;
-    if (first < last)
+    if (head)
     {
         ret = 1;
-        st = arr[first];
-        first ++;
+        struct Node *current = head;
+        head = head->next;
+        st = current->student;
+        free(current);
     }
-    else
-    {
-        first = last = 1;
-    }
-    arr[1000].first = first;
-    arr[1000].last = last;
     return st;
-
-
 }
 void PrintMenu()
 {
-    printf("choose an option \n");
-    printf("1. enque\n");
-    printf("2. dequeue\n");
-    printf("3. exit\n");
+    printf("Choose an Option : \n");
+    printf("1. Push\n");
+    printf("2. Pop\n");
+    printf("3. Exit\n");
 }
 int main()
 {
     int exit = 0;
-    arr[1000].first = 1;
-    arr[1000].last = 1;
     while(!exit)
     {
         PrintMenu();
@@ -90,13 +102,13 @@ int main()
         {
         case 1:
             st = fill();
-            enqueue(st);
+            push(st);
             break;
         case 2:
-            st = dequeue();
+            st = pop();
             if (st.id == -1)
             {
-                printf("the queue is empty\n");
+                printf("the stack is empty\n");
             }
             else
             {
