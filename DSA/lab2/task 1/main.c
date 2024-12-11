@@ -1,13 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
-struct Student {
-int id;
-char name[10];
-int grade;
+struct Student
+{
+    int id;
+    char name[10];
+    int grade;
 };
-struct Node {
-struct Student student;
-struct Node * next;
+struct Node
+{
+    struct Student student;
+    struct Node * next;
 };
 struct Node *head;
 struct Node *tail;
