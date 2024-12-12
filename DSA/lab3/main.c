@@ -107,6 +107,21 @@ struct Student search(int id)
     }
     return found;
 };
+void bubble_sort()
+{
+    for (int i = 0; i < size - 1 - i; i ++)
+    {
+        for (int j = 0; j < size - 1; j ++)
+        {
+            if (st[j].id > st[j + 1].id)
+            {
+                struct Student temp = st[j];
+                st[j] = st[j + 1];
+                st[j + 1] = temp;
+            }
+        }
+    }
+}
 int main()
 {
     printf("enter size of the array\n");
@@ -121,8 +136,15 @@ int main()
     {
         print(st[i]);
     }
+    printf("after sorting by bubble sort \n");
+    bubble_sort();
+    for (int i = 0; i < size; i ++)
+    {
+        print(st[i]);
+    }
+    printf("\n");
     mergesort(0, size - 1);
-    printf("after sorting \n");
+    printf("after sorting by merge sort \n");
     for (int i = 0; i < size; i ++)
     {
         print(st[i]);
