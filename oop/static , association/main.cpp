@@ -72,7 +72,7 @@ public:
     ~Employee()
     {
         delete(name);
-        counter ++;
+        counter --;
        // cout<<"deleted"<<endl;
     }
 };
