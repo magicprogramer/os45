@@ -12,17 +12,17 @@
             gourmet au Catering
         </li>
         <li>
-            <a href ="#">
+            <a href ="#about">
                 About
             </a>
         </li>
         <li>
-            <a href ="#">
+            <a href ="#goal">
                 Menu
             </a>
         </li>
         <li>
-            <a href ="#">
+            <a href ="#contact">
                 Contact
             </a>
         </li>
@@ -39,11 +39,12 @@
 
         </div>
         <div class = "content">
-            <h2>
+            <h2 class = "header">
                 <strong>
                     About Catering
                 </strong>
             </h2>
+            <div id = "subid">
             <h3>
                 Tradition since 1889
             </h3>
@@ -55,12 +56,13 @@
                    Duis aute iruredolor in reprehenderit in voluptate velit esse 
                 cillum dolore eu fugiat nulla pariatur.We only use <span style = "background-color:grey;">seasonal </span> ingredients
             </p>
+            </div>
         </div>
     </div>
     <hr>
     <div id = "goal">
         <div class = 'content'>
-            <h1>
+            <h1 class = "header">
                 <strong>
                     Our Menu
                 </strong>
@@ -104,7 +106,7 @@
     <hr>
     <div id = "contact">
         <div class = "content">
-        <h1><strong>Contact</strong></h1>
+        <h1 class = "title"><strong>Contact</strong></h1>
         <p>
             We offer full-service catering for any event, large or small. We understand your needs and we will cater the food to satisfy the biggerst criteria of them all, both look and taste. Do not hesitate to contact us.
         </p>
@@ -118,13 +120,12 @@
 </div>
     <div id = "form">
         <form>
-            <input type = "text" placeholder="Name">
-            <input type = "number" placeholder="how many people">
-            <input type = "datetime-local">
-            <textarea placeholder="your message">
+            <input type = "text" placeholder="Name" name="name"><hr>
+            <input type = "number" placeholder="how many people" name = "people"><hr>
+            <input type = "datetime-local" name = "dt"><hr>
+            <input type = "text" placeholder="Your message" name = "msg"><hr>
 
-            </textarea>
-            <input type = "submit" value = "send message">
+            <input type = "submit" value = "send message" id = "submit" name = "submit">
         </form>
     </div>
     </div>

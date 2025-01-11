@@ -1,6 +1,11 @@
 nav{
 
     min-height: 30px;
+    top:0;
+    width:100%;
+    position: fixed;
+    background-color:white;
+    opacity: .5;
 }
 nav li{
 display: inline;
@@ -19,6 +24,7 @@ nav li
 }
 nav li:hover{
 background-color:rgb(165, 161, 161);
+height: 100%;
 }
 #img1 h1{
 margin-top:-10%;
@@ -33,6 +39,7 @@ margin-top:-10%;
 #about .img{
     float:left;
     height:100%;
+    padding-left: 5%;
 }
 #goal .img{
     display: inline-block;
@@ -43,12 +50,13 @@ margin-top:-10%;
 #about .content{
     border:1px;
     height: 100%;
-    width:50%;
+    width:40%;
     display: inline-block;
+    padding:5%;
 }
 #about .img, #goal .img{
     height: 100%;
-    width:50%;
+    width:40%;
 }
 #about .img img, #goal .img img{
     height: 100%;
@@ -63,6 +71,44 @@ margin-top:-10%;
 #contact #form input{
     display: block;
 }
+#goal .img, .content{
+    padding-left:5%;
+}
 .dif{
     color:rgb(182, 127, 255);
+}
+#contact form{
+    padding-left: 5%;
+}
+#contact input {
+    border:none;
+    height:10vh;
+    width:100%;
+}
+#contact #submit{
+    width:20%;
+}
+#contact #submit:hover{
+    background-color: aquamarine;
+}
+.header{
+    color:red;
+}
+#subid{
+    position: absolute;
+    bottom: 10%;
+}
+#about{
+    margin-top:20vh;
+    position: relative;
+}
+#about .header{
+position:absolute;
+top:0;
+}
+#goal{
+    margin-top: 10vh;
+}
+#img1 img{
+    width: 100%;
 }
