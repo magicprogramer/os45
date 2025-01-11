@@ -6,6 +6,7 @@ nav{
     position: fixed;
     background-color:white;
     opacity: .5;
+    z-index: 1000;
 }
 nav li{
 display: inline;
