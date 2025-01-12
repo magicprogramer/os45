@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task3</title>
+    <script>
+        function ispalindrome(str)
+        {
+            for (var i = 0, n = str.length; i < n / 2; i ++)
+            {
+             //   alert(str.charAt(i) + " " + str.charAt(n - i - 1));
+                if (str.charAt(i) != str.charAt(n - i - 1))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        var str = "";
+        while (str == null || str == "")
+        {
+            str = prompt("enter the string");
+        }
+        var c = confirm("ignore case");
+        if (c)
+        {
+            //alert(c);
+            str = str.toUpperCase();
+        }
+        ispalindrome(str) ? document.write(str + " is a palindrome\n") : document.write(str + "is not a palindrome");
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

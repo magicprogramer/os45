@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task2</title>
+    <script>
+        var s = 0, x = -1;
+        var c = 1;
+        while(s < 100 && x)
+        {
+            var msg = prompt("enter  number " + c);
+            if (!isFinite(msg) || msg === null || msg == "")
+            {
+                alert("you must enter a number");
+                continue;
+            }
+            c ++;
+            x = parseFloat(msg);
+            s += x;
+        }
+        document.write("sum = " + s);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
