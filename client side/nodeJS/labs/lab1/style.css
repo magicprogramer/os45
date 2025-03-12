@@ -1,0 +1,43 @@
+center{
+    background-color: blueviolet;
+    position: relative;
+    width: 50vh;
+    height: 50vh;
+}
+center h1{
+    position: absolute;
+    top:20%;
+    left: 20%;
+}
+form{
+    background-color: yellowgreen;
+    width: 70vw;
+    height: 70vh;
+}
+
+center h2{
+    position: absolute;
+    top:40%;
+    left: 20%;
+}
+nav{
+    display: flex;
+    border-top: 7px solid black;
+    border-bottom: 7px solid black;
+}
+nav ul{
+    display: grid;
+    flex : 1;
+    grid-template-columns: 1fr 1fr;
+    background-color:aquamarine;
+    height: 100%;
+    width: 100%;
+    
+}
+nav ul li{
+    list-style-type: none;
+    height: 100%;
+}
+nav ul li:hover{
+    background-color: white;
+}
