@@ -31,7 +31,7 @@
     </section>
     <section id = "s2">
         <input type = "number" id = "target" placeholder="enter car id">
-        <button>search</button>
+        <button onclick = 'find()'>search</button>
         <button onclick="deleteCar()">delete</button>
     </section>
     <hr>
@@ -39,6 +39,21 @@
         var div = document.createElement('div');
         div.classList.add('grid');
         document.body.appendChild(div);
+        async function find()
+        {
+            let id = document.getElementById('target').value;
+            id = parseInt(id);
+            if (!id && id == 0)
+            {
+                alert("you must provide an id");
+                return ;
+            }
+            if (await search(id))
+            {
+                alert("exist");
+            }
+            else alert('doesnt exist');
+        }
         async function insert()
         {
                 
