@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cars</title>
+    <style>
+        #s1{
+            display:flex;
+            flex-direction: row;
+        }
+        .grid{
+            display: flex;
+            flex-direction: row;
+            gap:10vh;
+        }
+        .child{
+            border: 1px solid yellow;
+            
+        }
+    </style>
+</head>
+<body>
+    <section id = "s1">
+    <input type = "number" id= "id" placeholder="enter car id">
+    <input type = "text" id = "model" placeholder="enter car model">
+    <input type = "text" id = "color" placeholder="enter car color">
+    <button onclick="insert()">add car</button>
+    <button onclick="edit()">update car </button>
+    <button onclick="getCars()">get all cars</button>
+    </section>
+    <section id = "s2">
+        <input type = "number" id = "target" placeholder="enter car id">
+        <button>search</button>
+        <button onclick="deleteCar()">delete</button>
+    </section>
+    <hr>
+    <script>
+        var div = document.createElement('div');
+        div.classList.add('grid');
+        document.body.appendChild(div);
+        async function insert()
+        {
+                
+            let id = document.getElementById('id').value;
+            let model = document.getElementById('model').value;
+            let color = document.getElementById('color').value;
+            console.log(id, model, color);
+            let body = {id, model, color};
+            if (id && model && color)
+            {
+                if (await search(id))
+                {
+                    console.log(id);
+                    alert('car id already exist');
+                    return ;
+                }
+                
+                let res = await fetch("/insertCar",{
+                    method:"POST",
+                    headers:{
+                        "content-type":"application/json"
+                    },
+                    body:JSON.stringify(body)
+                });
+                await getCars();
+
+            }
+            else
+            {
+                alert('enter data')
+                return ;
+            }
+
+        }
+        async function getCars()
+        {
+            let res = await fetch('/getCars');
+            res = await res.json();
+            
+            div.innerHTML = '';
+            let c = 1;
+            res.map(car =>
+            {
+                    
+                let div2 = document.createElement('div');
+                div2.classList.add('child');
+                console.log(car, "tf");
+                let counter = document.createElement('div');
+                counter.innerHTML = `car number ${c ++}`;
+                let id = document.createElement('div');
+                id.innerHTML = `${car.id}`;
+                let model = document.createElement('div');
+                model.innerHTML = `${car.model}`;
+                let color = document.createElement('div');
+                color.innerHTML = `${car.color}`;
+                div2.append(counter, id, model, color);
+                    
+                div.appendChild(div2);
+
+            }
+            
+            )
+        }
+        
+        async function deleteCar(id) {
+            if (id != 0 && !id)
+            {
+                id = document.getElementById('target').value;
+                id = parseInt(id);
+            }
+            if (id != 0 && !id)
+            {
+                alert('please provide an id');
+                return ;
+            }
+            const res = await fetch("/deleteCar?id="+id);
+            const resbody = await res.json();
+            getCars();
+            alert(resbody.msg)
+        }
+        async function edit()
+        {
+                
+            let id = document.getElementById('id');
+            let model = document.getElementById('model');
+            let color = document.getElementById('color');
+            console.log(id.value, model.value, color.value);
+            if (id && model && color)
+            {
+                id = id.value;
+                model = model.value;
+                color = color.value;
+                body = {id, model, color};
+                
+                let res = await fetch(`/edit?id=${id}`,{
+                    method:"POST",
+                    headers:{
+                        "content-type":"application/json"
+                    },
+                    body:JSON.stringify(body)
+                });
+                getCars();
+
+            }
+            else
+            {
+                console.log("lag");
+                return ;
+            }
+
+        }
+        
+        async function search(id)
+        {
+                
+            if (id)
+            {
+                
+                let res = await fetch(`/find?id=${id}`,{
+                    method:"get",
+                    headers:{
+                        "content-type":"application/json"
+                    }
+                });
+                res = await res.json();
+                console.log(res.msg);
+                return res.msg;
+
+            }
+            else
+            {
+                alert("you must give an id");
+                return 0;
+            }
+
+        }
+    </script>
+</body>
+</html>
